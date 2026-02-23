@@ -1,6 +1,6 @@
 import { Box, Button, Container, Typography, Skeleton, Link } from "@mui/material";
 import { Grid } from "@mui/system";
-import { Layout as DashboardLayout } from "/src/layouts/index.js";
+import { Layout as DashboardLayout } from "../../../../layouts/index.js";
 import { useForm, useWatch } from "react-hook-form";
 import CippButtonCard from "../../../../components/CippCards/CippButtonCard";
 import { Search } from "@mui/icons-material";
@@ -21,7 +21,6 @@ const Page = () => {
     <Box
       sx={{
         flexGrow: 1,
-        py: 4,
       }}
     >
       <Container maxWidth={false}>
@@ -70,7 +69,7 @@ const Page = () => {
             <Grid size={{ xs: 8 }}>
               <CippButtonCard title="Tenant Lookup Results">
                 <Grid container spacing={2}>
-                  <Grid size={{ xs: 6 }}>
+                  <Grid size={{ xs: 12 }}>
                     <Typography variant="body1">
                       <strong>Tenant Name:</strong> {domain}
                     </Typography>
@@ -85,21 +84,11 @@ const Page = () => {
                       <strong>Tenant Brand Name :</strong>{" "}
                       {getTenant.data?.GraphRequest?.federationBrandName
                         ? getTenant.data?.GraphRequest?.federationBrandName
-                        : "N/A"}
-                    </Typography>
-                  </Grid>
-                  <Grid size={{ xs: 6 }}>
-                    <Typography variant="body1">
-                      <strong>domains:</strong>
+                        : "Not Specified"}
                     </Typography>
                     <Typography variant="body1">
-                      {getTenant.data?.Domains?.map((domain, index) => (
-                        <li key={index}>
-                          <Link href={`https://${domain}`} target="_blank">
-                            {domain}
-                          </Link>
-                        </li>
-                      ))}
+                      <strong>Tenant Region:</strong>{" "}
+                      {getTenant.data?.OpenIdConfig?.tenant_region_scope}
                     </Typography>
                   </Grid>
                 </Grid>
